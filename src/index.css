@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 flex justify-center min-h-screen box-border;
+    }
+}
+
+#root {
+    @apply w-full flex flex-col min-h-[100dvh];
+}
+
+/* Hide spin buttons for cleaner numeric inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
