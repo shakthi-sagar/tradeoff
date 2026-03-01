@@ -4,9 +4,10 @@ export function ThemeToggle() {
     const [isDark, setIsDark] = useState(() => {
         if (typeof window !== "undefined") {
             const stored = localStorage.getItem("theme");
-            return stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+            // Default to dark if no theme set, otherwise respect stored choice
+            return stored !== "light";
         }
-        return false;
+        return true;
     });
 
     // No need for initial transition useEffect since index.html handles it
@@ -25,7 +26,7 @@ export function ThemeToggle() {
     return (
         <button
             onClick={toggle}
-            className="p-2 rounded-lg text-slate-500 hover:bg-slate-200 dark:text-slate-400 dark:hover:bg-slate-800 border-2 border-slate-200 dark:border-slate-800 transition-colors"
+            className="p-2 rounded-lg text-slate-500 hover:bg-slate-200 dark:text-white dark:hover:bg-slate-800 border-2 border-slate-200 dark:border-slate-800 transition-colors"
             aria-label="Toggle Dark Mode"
         >
             {isDark ? (
